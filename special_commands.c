@@ -11,22 +11,22 @@
  */
 int execute_special_command(char **args)
 {
-	if (_strcmp(args[0], "exit"))
+	if (!_strcmp(args[0], "exit"))
 	{
 		return (exit_command(args[1]) + 10);
 	}
-	else if (_strcmp(args[0], "cd"))
+	else if (!_strcmp(args[0], "cd"))
 	{
 		cd(args[1]);
 		return (1);
 	}
-	else if (_strcmp(args[0], "setenv"))
+	else if (!_strcmp(args[0], "setenv"))
 	{
 		if (args[1] && args[2])
 			set_environ(args[1], args[2]);
 		return (1);
 	}
-	else if (_strcmp(args[0], "unsetenv"))
+	else if (!_strcmp(args[0], "unsetenv"))
 	{
 		unset_environ(args[1]);
 		return (1);

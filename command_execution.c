@@ -9,19 +9,21 @@
 
 /**
  * execute - executes a command passed to it
- * @command: a list of null terminated strings
+ * @str_command: a string containing a raw command
  */
-void execute(char **command)
+void execute(char *str_command)
 {
 	static int times_invoked = 1;
 	pid_t child;
 	char *temp;
 	int status;
+	char **command = split_string(str_command);
 
 	if (command[0])
 	{
 		if (command[0][0] != '/' && command[-0][0] != '.')
 		{
+			temp = command[0];
 			command[0] = path_command(command[0]);
 
 			if (command[0][0] != '/')
@@ -31,8 +33,8 @@ void execute(char **command)
 					print_error(command[0], times_invoked);
 				else if (status > 9)
 				{
-					free(command);
 					free_char_array(command);
+					free(str_command);
 					exit(status - 10);
 				}
 				else if (status == 9)
@@ -43,10 +45,15 @@ void execute(char **command)
 						     times_invoked);
 					free(temp);
 				}
+				free_char_array(command);
+				free(str_command);
+
 				times_invoked++;
 
 				return;
 			}
+			else
+				free(temp);
 
 		}
 		child = fork();
@@ -61,6 +68,9 @@ void execute(char **command)
 			fflush(stdout);
 		}
 	}
+	free_char_array(command);
+	free(str_command);
+
 	times_invoked++;
 }
 
@@ -79,7 +89,7 @@ char *path_command(char *command)
 
 	if (path)
 	{
-		for (dir = strtok(path, ";"); dir; dir = strtok(NULL, ":"))
+		for (dir = strtok(path, ":"); dir; dir = strtok(NULL, ":"))
 		{
 			sub1 = str_concat(dir, "/");
 			sub2 = str_concat(sub1, command);

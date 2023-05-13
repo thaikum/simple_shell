@@ -4,7 +4,7 @@
 extern char *program_invocation_name;
 
 /*================ command_execution.c =========================*/
-void execute(char **command);
+void execute(char *command);
 char *path_command(char *command);
 
 /*================ printing_functions.c ========================*/
