@@ -1,4 +1,5 @@
 #include "main.h"
+#include <unistd.h>
 
 /**
  * main - it determine which mode of shell to use
@@ -9,11 +10,11 @@ int main(void)
 {
 	if (isatty(STDIN_FILENO) == 1)
 	{
-		interactive(void);
+		interactive();
 	}
 	else
 	{
-		non_interactive(void);
+		non_interactive();
 	}
 
 	return (0);

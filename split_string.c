@@ -1,9 +1,7 @@
 #include "main.h"
-
-char **split_string(char *str);
-int _strlen(char *str);
-char *_strcpy(char *s1, char *s2);
-char *_strdup(char *str);
+#include <string.h>
+#include <stddef.h>
+#include <stdlib.h>
 
 /**
  * split_string - tokenizes a string into words
@@ -120,4 +118,55 @@ char *_strdup(char *str)
 	*dup_offset = '\0';
 
 	return (dup);
+}
+
+/**
+ * str_concat - concatenates two strings
+ * @str1: first string
+ * @str2: second string
+ *
+ * Return: concatenated string
+ */
+char *str_concat(char *str1, char *str2)
+{
+	size_t l1 = _strlen(str1);
+	size_t l2 = _strlen(str2);
+	size_t counter, x;
+	char *result = malloc((l1 + l2 + 1) * sizeof(char));
+
+	if (!result)
+		exit(12);
+
+	for (counter = 0; str1 && counter < l1; counter++)
+		result[counter] = str1[counter];
+
+	for (x = 0; str2 && x < l2; x++, counter++)
+		result[counter] = str2[x];
+
+	result[counter] = '\0';
+
+	return (result);
+}
+/**
+ * _strcmp - compares two string if they are equal
+ * @s1: is the first string
+ * @s2: is the second string
+ *
+ * Return: 0 if equal or the difference in ASCII value
+ */
+int _strcmp(char *s1, char *s2)
+{
+	while (*s1 != '\0' && *s2 != '\0')
+	{
+		if (*s1 == *s2)
+		{
+			s1++;
+			s2++;
+		}
+		else
+		{
+			return (*s1 - *s2);
+		}
+	}
+	return (*s1 - *s2);
 }
