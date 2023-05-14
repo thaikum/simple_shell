@@ -9,15 +9,25 @@ int _strcmp(char *s1, char *s2);
  */
 void non_interactive(void)
 {
-	int n, nread;
+	size_t n = 0;
+	ssize_t nread;
 	char *buffer = NULL;
 	char **command;
 
-	while ((nread = getline(&buffer, &n, stdin)) > 0)
+	while ((nread = getline(&buffer, &n, stdin)) != -1)
 	{
-		if ((_strcmp(buffer, "\n") == 0) || (_strcmp(buffer, "\0")))
+		if ((strcmp(buffer, "\n") == 0))
+		{
 			continue;
+		}
+
 		command = split_string(buffer);
+		if (command == NULL)
+		{
+			free(buffer);
+			printf("nothing");
+			continue;
+		}
 		execute(command);
 		free(buffer);
 		free_token(command);

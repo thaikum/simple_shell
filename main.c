@@ -13,7 +13,7 @@ int main(void)
 	}
 	else
 	{
-		non_interactive(void);
+		non_interactive();
 	}
 
 	return (0);
