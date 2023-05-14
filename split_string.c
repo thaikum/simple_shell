@@ -1,9 +1,7 @@
 #include "main.h"
-
-char **split_string(char *str);
-int _strlen(char *str);
-char *_strcpy(char *s1, char *s2);
-char *_strdup(char *str);
+#include <stdlib.h>
+#include <stddef.h>
+#include <string.h>
 
 /**
  * split_string - tokenizes a string into words
@@ -48,76 +46,4 @@ char **split_string(char *str)
 	token_str[i] = NULL;
 	free(dup);
 	return (token_str);
-}
-/**
- * _strlen - calculates the length of a string
- * @str: the string to calculate its length
- *
- * Return: the length
- */
-int _strlen(char *str)
-{
-	int i = 0;
-
-	while (str[i])
-	{
-		i++;
-	}
-
-	return (i);
-}
-/**
- * _strcpy - copies one string to another.
- * @s1: is the destination string
- * @s2: is the source string
- *
- * Return: destination sstring
- */
-char *_strcpy(char *s1, char *s2)
-{
-	char  *dest;
-
-	dest = s1;
-	while (*s2)
-	{
-		*s1 = *s2;
-		s1++;
-		s2++;
-	}
-
-	*s1 = '\0';
-
-	return (dest);
-}
-
-/**
- * _strdup - duplicates a string
- * @str: is the string
- *
- * Return: a the duplicated string
- */
-char *_strdup(char *str)
-{
-	char *dup = NULL, *dup_offset;
-	int len;
-
-	len = _strlen(str);
-
-	dup = malloc(sizeof(char) * (len + 1));
-	if (dup == NULL)
-	{
-		return (NULL);
-	}
-
-	dup_offset = dup;
-
-	while (*str)
-	{
-		*dup_offset = *str;
-		dup_offset++;
-		str++;
-	}
-	*dup_offset = '\0';
-
-	return (dup);
 }

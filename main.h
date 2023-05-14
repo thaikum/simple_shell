@@ -1,0 +1,45 @@
+#ifndef MAIN_H
+#define MAIN_H
+
+extern char *program_invocation_name;
+
+/*================ command_execution.c =========================*/
+void execute(char *command);
+char *path_command(char *command);
+
+/*================ printing_functions.c ========================*/
+void print(char *);
+void print_e(char *);
+void print_error(char *, int);
+void custom_error(char *command, char *error, int times_invoked);
+void print_error(char *command, int times_invoked);
+void custom_error(char *command, char *error, int times_invoked);
+
+/*================ string_functions.c ==========================*/
+char **split_string(char *str);
+int _strlen(char *str);
+char *_strcpy(char *s1, char *s2);
+char *_strdup(char *str);
+char *str_concat(char *str1, char *str2);
+int _strcmp(char *, char *);
+
+/*================ memory_functions.c ==========================*/
+void free_char_array(char **array);
+
+/*================ utility.c ===================================*/
+char *int_to_str(int num);
+int is_valid_number(char *str);
+int _atoi(char *str);
+
+/*================ execution_mode.c =============================*/
+void non_interactive(void);
+void interactive(void);
+
+/*================ special functions =================*/
+int execute_special_command(char **);
+int exit_command(char *);
+void cd(char *);
+void set_environ(char *, char *);
+void unset_environ(char *);
+
+#endif
