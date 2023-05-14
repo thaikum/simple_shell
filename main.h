@@ -1,5 +1,11 @@
 #ifndef MAIN_H
 #define MAIN_H
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/wait.h>
 
 extern char *program_invocation_name;
 
@@ -20,6 +26,7 @@ char **split_string(char *str);
 int _strlen(char *str);
 char *_strcpy(char *s1, char *s2);
 char *_strdup(char *str);
+void non_interactive(void);
 char *str_concat(char *str1, char *str2);
 int _strcmp(char *, char *);
 
@@ -35,11 +42,10 @@ int _atoi(char *str);
 void non_interactive(void);
 void interactive(void);
 
-/*================ special functions =================*/
+/*================ special functions(inbuilt functions) =================*/
 int execute_special_command(char **);
 int exit_command(char *);
 void cd(char *);
 void set_environ(char *, char *);
 void unset_environ(char *);
-
 #endif
