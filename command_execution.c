@@ -8,6 +8,57 @@
 #include <sys/stat.h>
 
 /**
+ * command_sanitizer - makes splits the command, calls the path_command
+ * and also checks if it is an inbuild command
+ * @cmd: the command
+ * @times_invoked: the times the execute command has been invoked for error
+ * handling
+ * Return: an array of the command splited or null if it was invalid
+ */
+char **command_sanitizer(char *cmd, int times_invoked)
+{
+	char *temp;
+	int status;
+	char **command = split_string(cmd);
+
+	if (command[0] && command[0][0] != '/' && command[-0][0] != '.')
+	{
+		temp = command[0];
+		command[0] = path_command(command[0]);
+		if (command[0][0] != '/')
+		{
+			status = execute_special_command(command);
+			if (!status)
+				print_error(command[0], times_invoked);
+			else if (status > 9)
+			{
+				free_char_array(command);
+				free(cmd);
+				exit(status - 10);
+			}
+			else if (status == 9)
+			{
+				temp = str_concat("Illegal number: ",
+							  command[1]);
+				custom_error(command[0], temp,
+						     times_invoked);
+				free(temp);
+			}
+			free_char_array(command);
+			return (NULL);
+		}
+		else
+			free(temp);
+	}
+	else if (!command[0])
+	{
+		free_char_array(command);
+		return (NULL);
+	}
+	return (command);
+}
+
+/**
  * execute - executes a command passed to it
  * @str_command: a string containing a raw command
  */
@@ -15,47 +66,11 @@ void execute(char *str_command)
 {
 	static int times_invoked = 1;
 	pid_t child;
-	char *temp;
-	int status;
-	char **command = split_string(str_command);
+	char **command = command_sanitizer(str_command, times_invoked);
+	struct stat st;
 
-	if (command[0])
+	if (command && command[0] && stat(command[0], &st) == 0)
 	{
-		if (command[0][0] != '/' && command[-0][0] != '.')
-		{
-			temp = command[0];
-			command[0] = path_command(command[0]);
-
-			if (command[0][0] != '/')
-			{
-				status = execute_special_command(command);
-				if (!status)
-					print_error(command[0], times_invoked);
-				else if (status > 9)
-				{
-					free_char_array(command);
-					free(str_command);
-					exit(status - 10);
-				}
-				else if (status == 9)
-				{
-					temp = str_concat("Illegal number: ",
-							  command[1]);
-					custom_error(command[0], temp,
-						     times_invoked);
-					free(temp);
-				}
-				free_char_array(command);
-				free(str_command);
-
-				times_invoked++;
-
-				return;
-			}
-			else
-				free(temp);
-
-		}
 		child = fork();
 		if (child == 0)
 		{
@@ -66,9 +81,12 @@ void execute(char *str_command)
 		{
 			wait(NULL);
 			fflush(stdout);
+			free_char_array(command);
 		}
 	}
-	free_char_array(command);
+	else if (command)
+		print_error(command[0], times_invoked);
+
 	free(str_command);
 
 	times_invoked++;

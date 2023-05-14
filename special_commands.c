@@ -43,7 +43,9 @@ int execute_special_command(char **args)
 int exit_command(char *status)
 {
 	if (!status)
+	{
 		return (0);
+	}
 	else
 	{
 		if (is_valid_number(status))
