@@ -14,8 +14,9 @@ void non_interactive(void)
 
 	while (getline(&buffer, &n, stdin) > 0)
 	{
-		if ((_strcmp(buffer, "\n") == 0) || (_strcmp(buffer, "\0")))
+		if (_strcmp(buffer, "\n") == 0)
 			continue;
+		/* execute function calls the spit string function*/
 		execute(buffer);
 	}
 }
