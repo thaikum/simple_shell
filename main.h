@@ -28,7 +28,6 @@ char *_strcpy(char *s1, char *s2);
 char *_strdup(char *str);
 void free_token(char **token);
 void non_interactive(void);
-void execute(char **args);
 char *str_concat(char *str1, char *str2);
 int _strcmp(char *, char *);
 
