@@ -30,7 +30,7 @@ void print_e(char *str)
  * @command: the command that was inputed
  * @times_invoked: number of times commands have been run on the system
  */
-void print_error(char *command, __attribute__((unused))int times_invoked)
+void print_error(char *command, int times_invoked)
 {
 	char *sub1, *sub2, *sub3, *times_invoked_str;
 
