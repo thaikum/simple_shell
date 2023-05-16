@@ -31,6 +31,11 @@ int execute_special_command(char **args)
 		unset_environ(args[1]);
 		return (1);
 	}
+	else if (!_strcmp(args[0], "env"))
+	{
+		env(void);
+		return (1);
+	}
 	return (0);
 }
 
