@@ -29,6 +29,7 @@ char *_strdup(char *str);
 void non_interactive(void);
 char *str_concat(char *str1, char *str2);
 int _strcmp(char *, char *);
+void _putchar(char *str);
 
 /*================ memory_functions.c ==========================*/
 void free_char_array(char **array);
@@ -48,4 +49,5 @@ int exit_command(char *);
 void cd(char *);
 void set_environ(char *, char *);
 void unset_environ(char *);
+void env(void);
 #endif

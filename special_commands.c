@@ -3,8 +3,8 @@
 #include <unistd.h>
 
 /**
- * execute_special_command - handles comands that are not present in
- * /bin/ e.g cd, exit, etc.
+ * execute_special_command - handles built-in comands (are not present in
+ * /bin/ e.g cd, exit, etc.)
  * @args: an array of the command and its arguments
  *
  * Return: 1 if the command is a special function and 0 if not
