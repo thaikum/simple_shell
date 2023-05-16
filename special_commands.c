@@ -33,7 +33,7 @@ int execute_special_command(char **args)
 	}
 	else if (!_strcmp(args[0], "env"))
 	{
-		env(void);
+		env();
 		return (1);
 	}
 	return (0);
