@@ -88,7 +88,7 @@ void execute(char *str_command)
 	else if (command)
 		print_error(command[0], times_invoked);
 
-	free(str_command);
+	/*free(str_command);*/
 
 	times_invoked++;
 }

@@ -30,10 +30,12 @@ void print_e(char *str)
  * @command: the command that was inputed
  * @times_invoked: number of times commands have been run on the system
  */
-void print_error(char *command, int times_invoked)
+void print_error(char *command, __attribute__((unused))int times_invoked)
 {
 	char *sub1, *sub2, *sub3, *times_invoked_str;
 
+	if (isatty(STDIN_FILENO) == 0)
+	{
 	sub1 = str_concat(program_invocation_name, ": ");
 	times_invoked_str = int_to_str(times_invoked);
 	sub2 = str_concat(sub1, times_invoked_str);
@@ -47,6 +49,18 @@ void print_error(char *command, int times_invoked)
 	free(sub2);
 	free(sub3);
 	free(times_invoked_str);
+	}
+
+	else if (isatty(STDIN_FILENO))
+	{
+		sub1 = str_concat(program_invocation_name, ": ");
+		sub2 = str_concat(sub1, command);
+
+		perror(sub2);
+
+		free(sub1);
+		free(sub2);
+	}
 }
 
 /**
