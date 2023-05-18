@@ -8,6 +8,7 @@
 #include <sys/wait.h>
 
 extern char *program_invocation_name;
+extern char **environ;
 
 /*================ command_execution.c =========================*/
 void execute(char *command);
