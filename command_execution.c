@@ -34,7 +34,7 @@ char **command_sanitizer(char *cmd, int times_invoked)
 			else if (status > 9)
 			{
 				free_char_array(command);
-				/*free(cmd);*/
+				free(cmd);
 				exit(status - 10);
 			}
 			else if (status == 9)

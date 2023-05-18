@@ -48,16 +48,6 @@ void print_error(char *command, int times_invoked)
 	free(sub3);
 	free(times_invoked_str);
 
-	/**if (isatty(STDIN_FILENO))
-	{
-		sub1 = str_concat(program_invocation_name, ": ");
-		sub2 = str_concat(sub1, command);
-
-		perror(sub2);
-
-		free(sub1);
-		free(sub2);
-	}*/
 }
 
 /**
