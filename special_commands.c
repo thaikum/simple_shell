@@ -13,7 +13,7 @@ int execute_special_command(char **args)
 {
 	if (!_strcmp(args[0], "exit"))
 	{
-		return (exit_command(args[1]) + 10);
+		return (exit_command(args) + 10);
 	}
 	else if (!_strcmp(args[0], "cd"))
 	{
@@ -45,19 +45,21 @@ int execute_special_command(char **args)
  *
  * Return: -1 if it fails or an exit code if it succeeds
  */
-int exit_command(char *status)
+int exit_command(char **status)
 {
 	if (!status)
-	{
 		return (0);
-	}
-	else
-	{
-		if (is_valid_number(status))
-			return (_atoi(status));
 
+	else if (is_valid_number(status[1]) && status[2] == NULL)
+		return (_atoi(status[1]));
+
+	else if (is_valid_number(status[1]) == 0)
 		return (-1);
-	}
+
+	else if (status[2])
+		return (-1);
+
+	return (-1);
 }
 /**
  * cd - changes the directory

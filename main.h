@@ -6,7 +6,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <sys/wait.h>
-
+#include <errno.h>
 extern char *program_invocation_name;
 extern char **environ;
 
@@ -46,7 +46,7 @@ void interactive(void);
 
 /*================ special functions(inbuilt functions) =================*/
 int execute_special_command(char **);
-int exit_command(char *);
+int exit_command(char **);
 void cd(char *);
 void set_environ(char *, char *);
 void unset_environ(char *);

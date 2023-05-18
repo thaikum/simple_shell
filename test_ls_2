@@ -5,6 +5,6 @@
 bon
 
 
-/bin/ls
+exit 
 
-bon
+/bin/ls
