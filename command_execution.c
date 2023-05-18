@@ -44,6 +44,9 @@ char **command_sanitizer(char *cmd, int times_invoked)
 				custom_error(command[0], temp,
 						     times_invoked);
 				free(temp);
+				free_char_array(command);
+				free(cmd);
+				exit(2);
 			}
 			free_char_array(command);
 			return (NULL);
