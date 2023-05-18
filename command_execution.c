@@ -86,7 +86,10 @@ void execute(char *str_command)
 		}
 	}
 	else if (command)
+	{
 		print_error(command[0], times_invoked);
+		free_char_array(command);
+	}
 
 	/*free(str_command);*/
 
