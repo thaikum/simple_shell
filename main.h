@@ -31,6 +31,8 @@ void non_interactive(void);
 char *str_concat(char *str1, char *str2);
 int _strcmp(char *, char *);
 void _putchar(char *str);
+char *_strtok(char *str, char *delim);
+ssize_t _getline(char **buffer, size_t *len, FILE *stream);
 
 /*================ memory_functions.c ==========================*/
 void free_char_array(char **array);
@@ -39,6 +41,7 @@ void free_char_array(char **array);
 char *int_to_str(int num);
 int is_valid_number(char *str);
 int _atoi(char *str);
+int isdelim(char c, char *delim);
 
 /*================ execution_mode.c =============================*/
 void non_interactive(void);
