@@ -14,9 +14,7 @@ void non_interactive(void)
 
 	while (getline(&buffer, &n, stdin) > 0)
 	{
-		if (_strcmp(buffer, "\n") == 0)
-			continue;
-		/* execute function calls the spit string function*/
+		/* execute function calls the split string function*/
 		execute(buffer);
 	}
 }
@@ -38,6 +36,7 @@ void interactive(void)
 		if (getline(&command, &command_len, stdin) != EOF)
 		{
 			execute(command);
+			free(command);
 		}
 		else
 		{

@@ -20,13 +20,13 @@ char **command_sanitizer(char *cmd, int times_invoked)
 	char *temp;
 	int status;
 	char **command = split_string(cmd);
-
-	if (command[0] && command[0][0] != '/' && command[-0][0] != '.')
+	/* check if its not a a path */
+	if (command[0] && command[0][0] != '/' && command[0][0] != '.')
 	{
-		temp = command[0];
+		temp = command[0];/* get its path */
 		command[0] = path_command(command[0]);
-		if (command[0][0] != '/')
-		{
+		if (command[0][0] != '/')/*if path command ddnt return a path */
+		{/* check if its an inbuilt cmd */
 			status = execute_special_command(command);
 			if (!status)
 				print_error(command[0], times_invoked);
@@ -38,11 +38,12 @@ char **command_sanitizer(char *cmd, int times_invoked)
 			}
 			else if (status == 9)
 			{
-				temp = str_concat("Illegal number: ",
-							  command[1]);
-				custom_error(command[0], temp,
-						     times_invoked);
+				temp = str_concat("Illegal number: ", command[1]);
+				custom_error(command[0], temp, times_invoked);
 				free(temp);
+				free_char_array(command);
+				free(cmd);
+				exit(2);
 			}
 			free_char_array(command);
 			return (NULL);
@@ -50,7 +51,7 @@ char **command_sanitizer(char *cmd, int times_invoked)
 		else
 			free(temp);
 	}
-	else if (!command[0])
+	else if (!command[0])/*split _string returned NULL */
 	{
 		free_char_array(command);
 		return (NULL);
@@ -85,9 +86,12 @@ void execute(char *str_command)
 		}
 	}
 	else if (command)
+	{
 		print_error(command[0], times_invoked);
+		free_char_array(command);
+	}
 
-	free(str_command);
+	/*free(str_command);*/
 
 	times_invoked++;
 }
