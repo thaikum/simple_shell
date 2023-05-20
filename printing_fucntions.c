@@ -47,7 +47,6 @@ void print_error(char *command, int times_invoked)
 	free(sub2);
 	free(sub3);
 	free(times_invoked_str);
-
 }
 
 /**
