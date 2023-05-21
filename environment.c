@@ -5,11 +5,10 @@
  * @variable: the environmental variable
  * @value: the value
  */
-void set_environ(char *variable, char *value)
+void set_environ(char *value, char *variable)
 {
 	int res;
-	int pos;
-	char *temp;
+	int temp;
 
 	if (environ == NULL)
 	{
@@ -25,15 +24,14 @@ void set_environ(char *variable, char *value)
 	}
 
 	temp = search_value(value);
-	if (temp)
+	if (temp != -1)
 	{
-		set_value(&temp, value, variable);
+		set_value(&environ[temp], value, variable);
 	}
 	else
 	{
 		res = char_char_len(environ);
-		set_value(&environ[0], value, variable);
-		realloc(environ, (res + 2) * sizeof(char *));
+ 		set_value(&environ[res], value, variable);
 		environ[res + 1] = NULL;
 	}
 }
@@ -95,15 +93,17 @@ int _strn_cmp(char *str1, char *str2, int n)
  * search_value - finds whether a value is present in the environ array
  * @value: the value to search
  *
- * Return: pointer to the value or null if not found
+ * Return: value index or -1
  */
-char *search_value(char *value)
+int search_value(char *value)
 {
 	int x;
 
 	for (x = 0; environ[x]; x++)
-		if (_strn_cmp(value, environ[x]), (int)_strlen(value))
-			return (environ[x]);
+	{
+		if (_strn_cmp(value, environ[x], (int)_strlen(value)) == 1)
+			return (x);
+	}
 
-	return (NULL);
+	return (-1);
 }

@@ -57,7 +57,7 @@ void env(void);
 
 /*================ environ.c ====================================*/
 int char_char_len(char **);
-char *search_value(char *);
+int search_value(char *);
 int _strn_cmp(char *, char *, int);
 void set_value(char **, char *, char *);
 #endif

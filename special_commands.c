@@ -105,23 +105,6 @@ void cd(char *path)
 		free(curdir);
 	}
 }
-/**
- * set_environ - sets an environmental variable
- * @variable: the environmental variable
- * @value: the value
- */
-void set_environ(char *variable, char *value)
-{
-	int res;
-
-	res = setenv(variable, value, 1);
-
-	if (res)
-	{
-		print_e(program_invocation_name);
-		print_e(": cannot set the value\n");
-	}
-}
 
 /**
  * unset_environ - unsets an environmental variable)
