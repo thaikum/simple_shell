@@ -33,3 +33,28 @@ void free_environ()
 	for (l = 1; l <= times; l++)
 		free(environ[environ_len - l]);
 }
+
+/**
+ * unsetenv - unsets a set value in the environment
+ */
+void unset_environ(char *value)
+{
+	int environ_len = char_char_len(environ);
+	int set_val = track_number_of_environ_alloc(0);
+	int val_pos;
+
+	if (environ != NULL)
+	{
+		val_pos = search_value(value);
+		if (val_pos != -1)
+		{
+			if (val_pos > environ_len - set_val)
+				track_number_of_environ_alloc(-1);
+			for (; val_pos < environ_len; val_pos++)
+			{
+				environ[val_pos] = environ[val_pos + 1];
+			}
+			environ[val_pos] = NULL;
+		}
+	}
+}
