@@ -18,6 +18,7 @@ void set_environ(char *value, char *variable)
 		else
 		{
 			set_value(&environ[0], value, variable);
+			track_number_of_environ_alloc(1);
 			environ[1] = NULL;
 			return;
 		}
@@ -27,11 +28,13 @@ void set_environ(char *value, char *variable)
 	if (temp != -1)
 	{
 		set_value(&environ[temp], value, variable);
+		track_number_of_environ_alloc(1);
 	}
 	else
 	{
 		res = char_char_len(environ);
  		set_value(&environ[res], value, variable);
+		track_number_of_environ_alloc(1);
 		environ[res + 1] = NULL;
 	}
 }
@@ -59,8 +62,6 @@ void set_value(char **environ_val, char *value, char *variable)
 {
 	char *temp;
 
-	(*environ_val) = malloc((_strlen(variable) +
-			     _strlen(value) + 2 * sizeof(char)));
 	temp = str_concat(value, "=");
 	*environ_val = str_concat(temp, variable);
 	(*environ)[_strlen(variable) + _strlen(value) + 1] = '\0';
