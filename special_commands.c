@@ -106,19 +106,3 @@ void cd(char *path)
 	}
 }
 
-/**
- * unset_environ - unsets an environmental variable)
- * @variable: variable to unset
- */
-void unset_environ(char *variable)
-{
-	int res;
-
-	res = unsetenv(variable);
-
-	if (res)
-	{
-		print_e(program_invocation_name);
-		print_e(": cannot unset the variable\n");
-	}
-}
