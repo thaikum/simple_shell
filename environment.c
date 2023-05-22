@@ -26,18 +26,14 @@ void set_environ(char *value, char *variable)
 
 	temp = search_value(value);
 	if (temp != -1)
-	{
-		set_value(&environ[temp], value, variable);
-		track_number_of_environ_alloc(1);
-	}
-	else
-	{
-		res = char_char_len(environ);
- 		set_value(&environ[res], value, variable);
-		track_number_of_environ_alloc(1);
-		environ[res + 1] = NULL;
-	}
+      		unset_environ(value);
+
+	res = char_char_len(environ);
+	set_value(&environ[res], value, variable);
+	track_number_of_environ_alloc(1);
+	environ[res + 1] = NULL;
 }
+
 /**
  * char_char_len: finds the length of an array of character character pointer
  * @arr: the array to be tested
