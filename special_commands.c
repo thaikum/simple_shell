@@ -77,13 +77,15 @@ void cd(char *path)
 	}
 	else if (!_strcmp(path, "-"))
 	{
+
 		cur_k = getcwd(dir, 80);
 		old_k = getenv("OLDPWD");
 		result = chdir(old_k);
 		k = getcwd(curdir, 80);
 
-		setenv("PWD", k, 1);
-		setenv("OLDPWD", cur_k, 1);
+		set_environ("PWD", k);
+		set_environ("OLDPWD", cur_k);
+
 		print(k);
 		print("\n");
 		return;
@@ -96,47 +98,14 @@ void cd(char *path)
 
 	if (!result)
 	{
+
 		k = getcwd(curdir, 80);
-		setenv("PWD", k, 1);
-		setenv("OLDPWD", cur_k, 1);
+		set_environ("PWD", k);
+		set_environ("OLDPWD", cur_k);
 	}
 	else
 	{
 		print_e(program_invocation_name);
 		print_e(": no such file or directory\n");
-	}
-}
-/**
- * set_environ - sets an environmental variable
- * @variable: the environmental variable
- * @value: the value
- */
-void set_environ(char *variable, char *value)
-{
-	int res;
-
-	res = setenv(variable, value, 1);
-
-	if (res)
-	{
-		print_e(program_invocation_name);
-		print_e(": cannot set the value\n");
-	}
-}
-
-/**
- * unset_environ - unsets an environmental variable)
- * @variable: variable to unset
- */
-void unset_environ(char *variable)
-{
-	int res;
-
-	res = unsetenv(variable);
-
-	if (res)
-	{
-		print_e(program_invocation_name);
-		print_e(": cannot unset the variable\n");
 	}
 }

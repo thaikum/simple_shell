@@ -17,6 +17,7 @@ void non_interactive(void)
 		/* execute function calls the split string function*/
 		execute(buffer);
 	}
+	free_environ();
 }
 
 /**
@@ -41,8 +42,10 @@ void interactive(void)
 		else
 		{
 			free(command);
+			free_environ();
 			print("\n");
 			exit(0);
 		}
 	}
+	free_environ();
 }

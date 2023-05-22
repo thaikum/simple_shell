@@ -34,6 +34,7 @@ char **command_sanitizer(char *cmd, int times_invoked)
 			{
 				free_char_array(command);
 				free(cmd);
+				free_environ();
 				exit(status - 10);
 			}
 			else if (status == 9)
@@ -43,6 +44,7 @@ char **command_sanitizer(char *cmd, int times_invoked)
 				free(temp);
 				free_char_array(command);
 				free(cmd);
+				free_environ();
 				exit(2);
 			}
 			free_char_array(command);

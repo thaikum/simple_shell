@@ -54,4 +54,14 @@ void cd(char *);
 void set_environ(char *, char *);
 void unset_environ(char *);
 void env(void);
+
+/*================ environ.c ====================================*/
+int char_char_len(char **);
+int search_value(char *);
+int _strn_cmp(char *, char *, int);
+void set_value(char **, char *, char *);
+
+/*==================== unsetenv.c ==================================*/
+int track_number_of_environ_alloc(int set);
+void free_environ();
 #endif
