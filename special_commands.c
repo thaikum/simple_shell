@@ -82,7 +82,7 @@ void cd(char *path)
 	{
 		result = chdir("..");
 		k = getcwd(curdir, 30);
-		setenv("PWD", k, 1);
+		set_environ("PWD", k);
 		print(k);
 		print("\n");
 		free(curdir);
@@ -95,7 +95,7 @@ void cd(char *path)
 	if (!result)
 	{
 		k = getcwd(curdir, 30);
-		setenv("PWD", k, 1);
+		set_environ("PWD", k);
 		free(curdir);
 	}
 	else
@@ -105,4 +105,3 @@ void cd(char *path)
 		free(curdir);
 	}
 }
-
