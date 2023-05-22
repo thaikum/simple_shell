@@ -13,6 +13,7 @@ void env(void)
 	while (env[i] != NULL)
 	{
 		_putchar(env[i]);
+		_putchar("\n");
 		i++;
 	}
 }
