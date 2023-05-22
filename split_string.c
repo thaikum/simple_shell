@@ -40,6 +40,7 @@ char **split_string(char *str)
 			free(dup);
 			return (NULL);
 		}
+
 		_strcpy(token_str[i], token1);
 		token1 = strtok(NULL, delim);
 	}

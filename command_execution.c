@@ -19,7 +19,6 @@ char **command_sanitizer(char *cmd, int times_invoked)
 {
 	char *temp;
 	int status;
-	/* tokenize the command */
 	char **command = split_string(cmd);
 	/* check if its not a a path */
 	if (command[0] && command[0][0] != '/' && command[0][0] != '.')
@@ -40,10 +39,8 @@ char **command_sanitizer(char *cmd, int times_invoked)
 			}
 			else if (status == 9)
 			{
-				temp = str_concat("Illegal number: ",
-							  command[1]);
-				custom_error(command[0], temp,
-						     times_invoked);
+				temp = str_concat("Illegal number: ", command[1]);
+				custom_error(command[0], temp, times_invoked);
 				free(temp);
 				free_char_array(command);
 				free(cmd);

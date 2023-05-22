@@ -1,10 +1,8 @@
 /bin/ls
 
-/bon
-
-bon
-
-
-exit 98b 34 56 
+/bin/ls
+cd
+/bin/ls
+cd -
 
 /bin/ls

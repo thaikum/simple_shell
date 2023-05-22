@@ -65,43 +65,47 @@ int exit_command(char *status)
  */
 void cd(char *path)
 {
-	char *curdir = malloc(30 * sizeof(char));
-	char *k;
+	char curdir[80], *k, *old_k, *cur_k, dir[80];
 	int result;
 
-	if (!curdir)
-		return;
-
-	if (!path || _strcmp(path, ""))
+	if (!path || !_strcmp(path, ""))
 	{
+		cur_k = getcwd(dir, 80);
 		k = getenv("HOME");
 		result = chdir(k);
 		k = NULL;
 	}
-	else if (_strcmp(path, "-"))
+	else if (!_strcmp(path, "-"))
 	{
-		result = chdir("..");
-		k = getcwd(curdir, 30);
+
+		cur_k = getcwd(dir, 80);
+		old_k = getenv("OLDPWD");
+		result = chdir(old_k);
+		k = getcwd(curdir, 80);
+
 		set_environ("PWD", k);
+		set_environ("OLDPWD", cur_k);
+
 		print(k);
 		print("\n");
-		free(curdir);
-		free(k);
 		return;
 	}
 	else
+	{
+		cur_k = getcwd(dir, 80);
 		result = chdir(path);
+	}
 
 	if (!result)
 	{
-		k = getcwd(curdir, 30);
+
+		k = getcwd(curdir, 80);
 		set_environ("PWD", k);
-		free(curdir);
+		set_environ("OLDPWD", cur_k);
 	}
 	else
 	{
 		print_e(program_invocation_name);
 		print_e(": no such file or directory\n");
-		free(curdir);
 	}
 }
