@@ -39,13 +39,10 @@ char **command_sanitizer(char *cmd, int times_invoked)
 			}
 			else if (status == 9)
 			{
-				temp = str_concat("Illegal number: ", command[1]);
+				temp = str_concat("Illegal number: ",
+						  command[1]);
 				custom_error(command[0], temp, times_invoked);
 				free(temp);
-				free_char_array(command);
-				free(cmd);
-				free_environ();
-				exit(2);
 			}
 			free_char_array(command);
 			return (NULL);
@@ -92,8 +89,6 @@ void execute(char *str_command)
 		print_error(command[0], times_invoked);
 		free_char_array(command);
 	}
-
-	/*free(str_command);*/
 
 	times_invoked++;
 }
