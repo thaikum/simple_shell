@@ -1,3 +1,3 @@
-This is a simple shell
-It emulates the linux shell
-It works for both interactive and non interactive modes
+# simple_shell
+This project emulates the simple shell
+It works on linux environment
