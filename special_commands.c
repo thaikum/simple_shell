@@ -36,6 +36,11 @@ int execute_special_command(char **args)
 		env();
 		return (1);
 	}
+	else if (!_strcmp(args[0], "alias"))
+	{
+		alias(args);
+		return (1);
+	}
 	return (0);
 }
 

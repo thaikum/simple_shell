@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * _strchr - finds the first occurrence of a given character in the given string
+ * _strchr - finds the first occurrence of a given character in given string
  * @str: the string to check
  * @ch: the character to test for
  *
@@ -45,7 +45,7 @@ ssize_t _getline(char **buffer, size_t *len, FILE *stream)
 		if (*buffer == NULL)
 			return (-1);
 	}
-	
+
 	if (last_index != -1)
 	{
 		(*buffer)[last_index + 1] = char_replaced;
@@ -70,7 +70,7 @@ ssize_t _getline(char **buffer, size_t *len, FILE *stream)
 			return (_strlen(*buffer));
 		}
 	}
-	
+
 	while ((nread = read(fileno(stream), *buffer, 1024)) > 0)
 	{
 		endline_pos = _strchr(*buffer, '\n');
@@ -89,4 +89,6 @@ ssize_t _getline(char **buffer, size_t *len, FILE *stream)
 	}
 
 	return (nread);
+
 }
+
