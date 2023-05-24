@@ -68,6 +68,9 @@ void execute(char *str_command)
 	pid_t child;
 	char **command = command_sanitizer(str_command, times_invoked);
 	struct stat st;
+	
+	if (!command)
+		return;
 
 	if (command && command[0] && stat(command[0], &st) == 0)
 	{
@@ -89,6 +92,7 @@ void execute(char *str_command)
 		print_error(command[0], times_invoked);
 		free_char_array(command);
 	}
+
 
 	times_invoked++;
 }
