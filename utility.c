@@ -24,7 +24,6 @@ char *int_to_str(int num)
 	return (_strdup(num_str));
 }
 
-#include "main.h"
 
 /**
  * is_valid_number - checks whether a certain string contains only numbers
@@ -64,4 +63,30 @@ int _atoi(char *str)
 		number = (number * 10) + (str[x] - '0');
 
 	return (is_negative ? number * -1 : number);
+}
+
+/**
+ * is_valid_env_value - checks if a string contains only lowercase, uppercase,
+ * underscore or a number
+ * @str: the string to check
+ * Return: 1 if succesful or 0 if not
+ */
+int is_valid_env_value(char *str)
+{
+	int x;
+
+	for (x = 0; str[x]; x++)
+	{
+		if ((str[x] >= '0' && str[x] <= '9') ||
+		    (str[x] >= 'a' && str[x] <= 'z') ||
+		    (str[x] >= 'A' && str[x] <= 'Z') ||
+		    str[x] == '_')
+		{
+			continue;
+		}
+		else
+			return (0);
+	}
+
+	return (1);
 }
