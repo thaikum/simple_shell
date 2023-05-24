@@ -72,3 +72,15 @@ void custom_error(char *command, char *error, int times_invoked)
 	print_e("\n");
 	free(times_str);
 }
+
+/**
+ * aliasError - prints the alias error mesage.
+ * @arg: is the arguments passed to the alias command
+ */
+void aliasError(char *arg)
+{
+	print_e("alias: ");
+	print_e(arg);
+	print_e(" not found");
+	print_e("\n");
+}

@@ -36,6 +36,11 @@ int execute_special_command(char **args)
 		env();
 		return (1);
 	}
+	else if (!_strcmp(args[0], "alias"))
+	{
+		alias(args);
+		return (1);
+	}
 	return (0);
 }
 
@@ -77,7 +82,6 @@ void cd(char *path)
 	}
 	else if (!_strcmp(path, "-"))
 	{
-
 		cur_k = getcwd(dir, 80);
 		old_k = getenv("OLDPWD");
 		result = chdir(old_k);
@@ -85,7 +89,6 @@ void cd(char *path)
 
 		set_environ("PWD", k);
 		set_environ("OLDPWD", cur_k);
-
 		print(k);
 		print("\n");
 		return;
@@ -95,7 +98,6 @@ void cd(char *path)
 		cur_k = getcwd(dir, 80);
 		result = chdir(path);
 	}
-
 	if (!result)
 	{
 
