@@ -14,7 +14,9 @@ void set_environ(char *value, char *variable)
 	{
 		environ = (char **) malloc(sizeof(char *) * 2);
 		if (!environ)
+		{
 			return;
+		}
 		else
 		{
 			set_value(&environ[0], value, variable);
@@ -26,7 +28,7 @@ void set_environ(char *value, char *variable)
 
 	temp = search_value(value);
 	if (temp != -1)
-      		unset_environ(value);
+		unset_environ(value);
 
 	res = char_char_len(environ);
 	set_value(&environ[res], value, variable);
@@ -35,7 +37,7 @@ void set_environ(char *value, char *variable)
 }
 
 /**
- * char_char_len: finds the length of an array of character character pointer
+ * char_char_len - finds the length of an array of character character pointer
  * @arr: the array to be tested
  *
  * Return: the lenght of the array
@@ -78,10 +80,10 @@ int _strn_cmp(char *str1, char *str2, int n)
 	for (; x < n && str1[x] && str2[x]; x++)
 	{
 		if (str1[x] != str2[x])
-		    return (0);
+			return (0);
 	}
 
-	if ( x == n)
+	if (x == n)
 		return (1);
 	return (0);
 }
