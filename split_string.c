@@ -12,7 +12,7 @@
 char **split_string(char *str)
 {
 	int i, tokennum = 0;
-	char *dup = NULL, *token = NULL, *token1 = NULL, *delim = " \n\t\r";
+	char *dup = NULL, *token = NULL, *token1 = NULL, *delim = " \n\t";
 	char **token_str = NULL;
 
 	dup = _strdup(str);
