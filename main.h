@@ -33,6 +33,7 @@ int _strcmp(char *, char *);
 void _putchar(char *str);
 char *_strtok(char *str, char *delim);
 ssize_t _getline(char **buffer, size_t *len, FILE *stream);
+int _strchr(char *, char);
 
 /*================ memory_functions.c ==========================*/
 void free_char_array(char **array);
@@ -64,4 +65,10 @@ void set_value(char **, char *, char *);
 /*==================== unsetenv.c ==================================*/
 int track_number_of_environ_alloc(int set);
 void free_environ();
+
+/*=================== command broker ==============================*/
+void command_broker(char *command);
+
+/*================== _strtok ==============================*/
+char *_strtok(char *, char *);
 #endif

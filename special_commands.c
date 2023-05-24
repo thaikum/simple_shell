@@ -77,15 +77,12 @@ void cd(char *path)
 	}
 	else if (!_strcmp(path, "-"))
 	{
-
 		cur_k = getcwd(dir, 80);
 		old_k = getenv("OLDPWD");
 		result = chdir(old_k);
 		k = getcwd(curdir, 80);
-
 		set_environ("PWD", k);
 		set_environ("OLDPWD", cur_k);
-
 		print(k);
 		print("\n");
 		return;
@@ -95,10 +92,8 @@ void cd(char *path)
 		cur_k = getcwd(dir, 80);
 		result = chdir(path);
 	}
-
 	if (!result)
 	{
-
 		k = getcwd(curdir, 80);
 		set_environ("PWD", k);
 		set_environ("OLDPWD", cur_k);

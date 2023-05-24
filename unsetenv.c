@@ -13,7 +13,7 @@ int track_number_of_environ_alloc(int set)
 
 	if (set_environ == -1 && set != 0)
 	{
-		set_environ = 1;;
+		set_environ = 1;
 	}
 	else if (set != 0)
 		set_environ += set;
@@ -24,7 +24,7 @@ int track_number_of_environ_alloc(int set)
 /**
  * free_environ - frees all allocated environ variables;
  */
-void free_environ()
+void free_environ(void)
 {
 	int times = track_number_of_environ_alloc(0);
 	int environ_len = char_char_len(environ);
@@ -35,7 +35,8 @@ void free_environ()
 }
 
 /**
- * unsetenv - unsets a set value in the environment
+ * unset_environ - unsets a set value in the environment
+ * @value: the value to unset
  */
 void unset_environ(char *value)
 {
