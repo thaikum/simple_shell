@@ -47,12 +47,9 @@ int _strcmp(char *, char *);
 void _putchar(char *str);
 char *_strtok(char *str, char *delim);
 ssize_t _getline(char **buffer, size_t *len, FILE *stream);
-<<<<<<< HEAD
 char **tokenizer(char *arg);
 int _strchr(char *str, char ch);
-=======
 int _strchr(char *, char);
->>>>>>> main
 
 /*================ memory_functions.c ==========================*/
 void free_char_array(char **array);

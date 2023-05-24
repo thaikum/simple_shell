@@ -42,7 +42,7 @@ void interactive(void)
 		else
 		{
 			free(command);
-			free_environ();
+			/*free_environ();*/
 			print("\n");
 			exit(0);
 		}

@@ -17,8 +17,8 @@ void command_broker(char *command)
 
 	if (contains_pipe != -1 || contains_semicolon != -1)
 	{
-		for (index = 0, token = strtok(command, "||;"); token;
-		     token = strtok(NULL, "||;"), index++)
+		for (index = 0, token = _strtok(command, "||;"); token;
+		     token = _strtok(NULL, "||;"), index++)
 			commands[index] = token;
 
 		commands[index] = NULL;

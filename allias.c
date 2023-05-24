@@ -117,13 +117,13 @@ void addAlias(char *arg, aliasEntry *lists)
 	free_char_array(token);
 }
 /**
- * _strchr1 - finds the first occurrence of a given character in given string
+ * _strchr - finds the first occurrence of a given character in given string
  * @str: the string to check
  * @ch: the character to test for
  *
  * Return: the first index where the character apears or -1 if it doesn't
  */
-int _strchr1(char *str, char ch)
+int _strchr(char *str, char ch)
 {
 	int x;
 
