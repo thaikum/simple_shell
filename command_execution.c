@@ -17,11 +17,11 @@
  */
 char **command_sanitizer(char *cmd, __attribute__((unused))int times_invoked)
 {
-	/*char *temp;
-	int status;*/
+	char *temp;
+	int status;
 	char **command = split_string(cmd);
 	/* check if its not a a path */
-	/*if (command[0] && command[0][0] != '/' && command[0][0] != '.')
+	if (command[0] && command[0][0] != '/' && command[0][0] != '.')
 	{
 		temp = command[0];
 		command[0] = path_command(command[0]);
@@ -49,7 +49,7 @@ char **command_sanitizer(char *cmd, __attribute__((unused))int times_invoked)
 		}
 		else
 			free(temp);
-	}*/
+	}
 	if (!command[0])/*split _string returned NULL */
 	{
 		free_char_array(command);
@@ -67,13 +67,13 @@ void execute(char *str_command)
 	static int times_invoked = 1;
 	pid_t child;
 	char **command = command_sanitizer(str_command, times_invoked);
-	/*struct stat st;*/
-	
+	struct stat st;
+
 	if (!command)
 		return;
 
-	/*if (command && command[0] && stat(command[0], &st) == 0)*/
-	
+	if (command && command[0] && stat(command[0], &st) == 0)
+	{
 		child = fork();
 		if (child == 0)
 		{
@@ -86,12 +86,12 @@ void execute(char *str_command)
 			fflush(stdout);
 			free_char_array(command);
 		}
-	/*
+	}
 	else if (command)
 	{
 		print_error(command[0], times_invoked);
 		free_char_array(command);
-	}*/
+	}
 
 
 	times_invoked++;

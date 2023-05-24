@@ -88,8 +88,8 @@ void cd(char *path)
 		old_k = getenv("OLDPWD");
 		result = chdir(old_k);
 		k = getcwd(curdir, 80);
-		set_environ("PWD", k);
-		set_environ("OLDPWD", cur_k);
+		setenv("PWD", k, 1);
+		setenv("OLDPWD", cur_k, 1);
 		print(k);
 		print("\n");
 		return;
@@ -102,8 +102,8 @@ void cd(char *path)
 	if (!result)
 	{
 		k = getcwd(curdir, 80);
-		set_environ("PWD", k);
-		set_environ("OLDPWD", cur_k);
+		setenv("PWD", k, 1);
+		setenv("OLDPWD", cur_k, 1);
 	}
 	else
 	{
