@@ -3,10 +3,7 @@
 /bin/ls
 
 
-/bin/ls
+/bon/ls
 
-setenv VARIABLE VALUE
-
-unsetenv VARIABLE
 
 /bin/ls
