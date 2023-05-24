@@ -68,4 +68,7 @@ void free_environ();
 
 /*=================== command broker ==============================*/
 void command_broker(char *command);
+
+/*================== _strtok ==============================*/
+char *_strtok(char *, char *);
 #endif
