@@ -15,8 +15,8 @@
  */
 typedef struct alias
 {
-        char *aliasName;
-        char *realName;
+	char *aliasName;
+	char *realName;
 } aliasEntry;
 
 extern char *program_invocation_name;
