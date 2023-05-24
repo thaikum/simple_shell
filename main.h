@@ -15,8 +15,8 @@
  */
 typedef struct alias
 {
-        char *aliasName;
-        char *realName;
+	char *aliasName;
+	char *realName;
 } aliasEntry;
 
 extern char *program_invocation_name;
@@ -60,6 +60,7 @@ int is_valid_number(char *str);
 int _atoi(char *str);
 int isdelim(char c, char *delim);
 void addAlias(char *arg, aliasEntry *lists);
+int is_valid_env_value(char *str);
 
 /*================ execution_mode.c =============================*/
 void non_interactive(void);
