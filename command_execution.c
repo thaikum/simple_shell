@@ -15,18 +15,18 @@
  * handling
  * Return: an array of the command splited or null if it was invalid
  */
-char **command_sanitizer(char *cmd, int times_invoked)
+char **command_sanitizer(char *cmd, __attribute__((unused))int times_invoked)
 {
-	char *temp;
-	int status;
+	/*char *temp;
+	int status;*/
 	char **command = split_string(cmd);
 	/* check if its not a a path */
-	if (command[0] && command[0][0] != '/' && command[0][0] != '.')
+	/*if (command[0] && command[0][0] != '/' && command[0][0] != '.')
 	{
-		temp = command[0];/* get its path */
+		temp = command[0];
 		command[0] = path_command(command[0]);
-		if (command[0][0] != '/')/*if path command ddnt return a path */
-		{/* check if its an inbuilt cmd */
+		if (command[0][0] != '/')
+		{
 			status = execute_special_command(command);
 			if (!status)
 				print_error(command[0], times_invoked);
@@ -49,8 +49,8 @@ char **command_sanitizer(char *cmd, int times_invoked)
 		}
 		else
 			free(temp);
-	}
-	else if (!command[0])/*split _string returned NULL */
+	}*/
+	if (!command[0])/*split _string returned NULL */
 	{
 		free_char_array(command);
 		return (NULL);
