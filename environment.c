@@ -11,11 +11,11 @@ void set_environ(char *value, char *variable)
 	int temp;
 
 	res = is_valid_env_value(value);
-	if (res == 0)
+	/*if (res == 0)
 	{
 		print_e("the value is invalid\n");
 		return;
-	}
+		}*/
 	if (environ == NULL)
 	{
 		environ = (char **) malloc(sizeof(char *) * 2);
