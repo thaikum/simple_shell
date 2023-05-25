@@ -50,6 +50,7 @@ ssize_t _getline(char **buffer, size_t *len, FILE *stream);
 char **tokenizer(char *arg);
 int _strchr(char *str, char ch);
 int _strchr(char *, char);
+void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 /*================ memory_functions.c ==========================*/
 void free_char_array(char **array);
