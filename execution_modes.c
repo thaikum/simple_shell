@@ -15,7 +15,8 @@ void non_interactive(void)
 	while (getline(&buffer, &n, stdin) > 0)
 	{
 		/* execute function calls the split string function*/
-		execute(buffer);
+		command_broker(buffer);
+		free(buffer);
 	}
 	free_environ();
 }
