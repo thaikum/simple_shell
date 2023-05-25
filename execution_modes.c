@@ -16,6 +16,7 @@ void non_interactive(void)
 	{
 		/* execute function calls the split string function*/
 		command_broker(buffer);
+		free(buffer);
 	}
 	free_environ();
 }
