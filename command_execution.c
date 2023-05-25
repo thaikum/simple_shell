@@ -78,7 +78,7 @@ void execute(char *str_command)
 		child = fork();
 		if (child == 0)
 		{
-			execve(command[0], command, __environ);
+			execve(command[0], command, environ);
 			print_error(command[0], times_invoked);
 		}
 		else
@@ -106,10 +106,21 @@ void execute(char *str_command)
  */
 char *path_command(char *command)
 {
-	char *path = _strdup(getenv("PATH"));
+	char *path = NULL;
 	char *dir;
 	char *sub1, *sub2;
+	int index = search_value("PATH");
 	struct stat st;
+
+	if (index != -1)
+	{
+		sub1 = _strdup(environ[index]);
+		strtok(sub1, "=");
+		path = _strdup(strtok(NULL, "="));
+		free(sub1);
+	}
+	else
+		return (command);
 
 	if (path)
 	{

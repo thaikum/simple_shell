@@ -29,7 +29,8 @@ char **command_sanitizer(char *cmd, __attribute__((unused))int times_invoked)
 		{
 			status = execute_special_command(command);
 			if (!status)
-				print_error(command[0], times_invoked);
+				custom_error(command[0], "not found",
+					     times_invoked);
 			else if (status > 9)
 			{
 				free_char_array(command);
@@ -89,7 +90,7 @@ void execute(char *str_command)
 	}
 	else if (command)
 	{
-		print_error(command[0], times_invoked);
+		custom_error(command[0], "not found", times_invoked);
 		free_char_array(command);
 	}
 
@@ -105,10 +106,19 @@ void execute(char *str_command)
  */
 char *path_command(char *command)
 {
-	char *path = _strdup(getenv("PATH"));
+	char *path;
 	char *dir;
 	char *sub1, *sub2;
+	int index = search_value("PATH");
 	struct stat st;
+
+	if (index != -1)
+	{
+		sub1 = _strtok(environ[index], "=");
+		path = _strtok(NULL, "=");
+	}
+	else
+		return (command);
 
 	if (path)
 	{
@@ -132,5 +142,5 @@ char *path_command(char *command)
 		return (command);
 	}
 	else
-		exit(98);
+		return (command);
 }
