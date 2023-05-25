@@ -2,12 +2,18 @@
 #include <unistd.h>
 
 /**
- * main - it determine which mode of shell to use
+ * main - main for the environment
  *
- * Return: 0 on sucess or 1 on fail
+ * @ac: arguments counter
+ * @args: the arguments
+ * @env: the environment
+ * Return: 0 on success or 1 if it fails
  */
-int main(void)
+int main(int ac __attribute__((unused)), char **args __attribute__((unused)),
+	 char **env)
 {
+	environ = env;
+
 	if (isatty(STDIN_FILENO) == 1)
 	{
 		interactive();
