@@ -8,7 +8,7 @@
  *
  * Return: number of characters read or -1 on failure
  */
-ssize_t _getline(char **buffer, size_t *len, FILE *stream);
+ssize_t _getline(char **buffer, size_t *len, FILE *stream)
 {
 	size_t c, i = 0;
 	char *temp;
@@ -40,7 +40,7 @@ ssize_t _getline(char **buffer, size_t *len, FILE *stream);
 		}
 		i++;
 	}
-	if (i == 0 && c == EOF)
+	if (i == 0)
 		return (-1);
 
 	(*buffer)[i] = '\0';
