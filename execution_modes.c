@@ -37,7 +37,7 @@ void interactive(void)
 
 		if (getline(&command, &command_len, stdin) != EOF)
 		{
-			command_broker(command);
+			execute(command);
 			free(command);
 		}
 		else
