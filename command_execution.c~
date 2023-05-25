@@ -29,8 +29,7 @@ char **command_sanitizer(char *cmd, __attribute__((unused))int times_invoked)
 		{
 			status = execute_special_command(command);
 			if (!status)
-				custom_error(command[0], "not found",
-					     times_invoked);
+				print_error(command[0], times_invoked);
 			else if (status > 9)
 			{
 				free_char_array(command);
@@ -90,7 +89,7 @@ void execute(char *str_command)
 	}
 	else if (command)
 	{
-		custom_error(command[0], "not found", times_invoked);
+		print_error(command[0], times_invoked);
 		free_char_array(command);
 	}
 
@@ -133,5 +132,5 @@ char *path_command(char *command)
 		return (command);
 	}
 	else
-		return (command);
+		exit(98);
 }
