@@ -14,7 +14,7 @@ int _strlen(char *str)
 {
 	int i = 0;
 
-	while (str[i])
+	while (str && str[i])
 	{
 		i++;
 	}
@@ -58,7 +58,7 @@ char *_strdup(char *str)
 
 	if (str == NULL)
 		return (NULL);
-	
+
 	len = _strlen(str);
 
 	dup = malloc(sizeof(char) * (len + 1));

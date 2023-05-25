@@ -22,10 +22,9 @@ int execute_special_command(char **args)
 	}
 	else if (!_strcmp(args[0], "setenv"))
 	{
-		if (args[1] && args[2])
+		if (args[1])
 			set_environ(args[1], args[2]);
-		else
-			print_e("Two values must be provided\n");
+
 		return (1);
 	}
 	else if (!_strcmp(args[0], "unsetenv"))
