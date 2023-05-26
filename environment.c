@@ -31,15 +31,20 @@ void set_environ(char *value, char *variable)
 			return;
 		}
 	}
-
 	temp = search_value(value);
 	if (temp != -1)
-		unset_environ(value);
-
-	res = char_char_len(environ);
-	set_value(&environ[res], value, variable);
-	track_number_of_environ_alloc(1);
-	environ[res + 1] = NULL;
+	{
+		set_value(&environ[temp], value, variable);
+		free(environ[temp]);
+	}
+	else
+	{
+		res = char_char_len(environ);
+		set_value(&environ[res], value, variable);
+		track_number_of_environ_alloc(1);
+		environ[res + 1] = NULL;
+		free(environ[res]);
+	}
 }
 
 /**
@@ -64,10 +69,12 @@ int char_char_len(char **arr)
  */
 void set_value(char **environ_val, char *value, char *variable)
 {
-	char *temp;
+	char *temp, *newvalue;
 
 	temp = str_concat(value, "=");
-	*environ_val = str_concat(temp, variable);
+	newvalue = str_concat(temp, variable);
+
+	*environ_val = newvalue;
 	(*environ)[_strlen(variable) + _strlen(value) + 1] = '\0';
 	free(temp);
 }
