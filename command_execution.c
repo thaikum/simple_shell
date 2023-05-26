@@ -77,7 +77,7 @@ void execute(char *str_command)
 		child = fork();
 		if (child == 0)
 		{
-			execve(command[0], command, __environ);
+			execve(command[0], command, environ);
 			print_error(command[0], times_invoked);
 		}
 		else

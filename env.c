@@ -10,10 +10,13 @@ void env(void)
 	char **env = environ;
 	int i = 0;
 
+	if (!env)
+		return;
+
 	while (env[i] != NULL)
 	{
 		_putchar(env[i]);
-		_putchar("\n");
+		_putchar("\nHOME");
 		i++;
 	}
 }

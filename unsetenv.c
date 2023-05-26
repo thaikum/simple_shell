@@ -52,7 +52,7 @@ void unset_environ(char *value)
 			if (val_pos > environ_len - set_val)
 				track_number_of_environ_alloc(-1);
 
-			free(environ[val_pos]);
+		/*free(environ[val_pos]);*/
 
 			for (; val_pos < environ_len; val_pos++)
 			{

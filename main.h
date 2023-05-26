@@ -35,6 +35,7 @@ void print_error(char *command, int times_invoked);
 void custom_error(char *command, char *error, int times_invoked);
 void printAlias(char *name, char *value);
 void aliasError(char *arg);
+void cdError(char *str);
 
 /*================ string_functions.c ==========================*/
 char **split_string(char *str);

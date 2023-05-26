@@ -16,6 +16,6 @@ int main(void)
 	{
 		non_interactive();
 	}
-
+	printf("%d\n", errno);
 	return (0);
 }
