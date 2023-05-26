@@ -69,22 +69,25 @@ int exit_command(char *status)
  * cd - changes the directory
  * @path: the new dir
  */
-void cd(char *path)
+void  cd(char *path)
 {
-	char curdir[80], *k, *old_k, *cur_k, dir[80];
-	int result;
+	char curdir[80], *k, *k1, *old_k, *cur_k, dir[80];
+	int result = 1;
 
 	if (!path || !_strcmp(path, ""))
 	{
 		cur_k = getcwd(dir, 80);
 		k = getenv("HOME");
+		if (!k)
+			return;
 		result = chdir(k);
-		k = NULL;
 	}
 	else if (!_strcmp(path, "-"))
 	{
 		cur_k = getcwd(dir, 80);
 		old_k = getenv("OLDPWD");
+		if (!old_k)
+			return;
 		result = chdir(old_k);
 		k = getcwd(curdir, 80);
 		setenv("PWD", k, 1);
@@ -96,17 +99,27 @@ void cd(char *path)
 	else
 	{
 		cur_k = getcwd(dir, 80);
-		result = chdir(path);
+		if (!access(path, F_OK | X_OK))
+			result = chdir(path);
 	}
 	if (!result)
 	{
-		k = getcwd(curdir, 80);
-		setenv("PWD", k, 1);
-		setenv("OLDPWD", cur_k, 1);
+		k1 = getcwd(curdir, 80);
+		set_environ("PWD", k1);
+		set_environ("OLDPWD", cur_k);
 	}
 	else
-	{
-		print_e(program_invocation_name);
-		print_e(": no such file or directory\n");
-	}
+		cdError(path);
+}
+/**
+ * cdError - prints the cd error
+ * @str: a string with command passed to cd
+ */
+void cdError(char *str)
+{
+	print_e(program_invocation_name);
+	print_e(": 1:");
+	print_e(" cd: can't cd to ");
+	print_e(str);
+	print_e("\n");
 }
